@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="coracao.png" type="image/x-icon">
+  <title>É assim que eu me sinto. 🖤</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    #youtubeVideo {
+      width: 100%;
+      height: 450px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.5);
+    }
+
+    .nav-button {
+      margin-top: 30px;
+      background: #ff6b6b;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #fff;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+    }
+
+    .nav-button:hover {
+      background: #ff8e8e;
+      transform: translateY(-2px);
+    }
+
+    /* Overlay de início */
+    #videoOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+    }
+
+    .video-start-box {
+      background: rgba(255, 107, 107, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 80%;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .video-start-btn {
+      background: white;
+      color: #ff6b6b;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: bold;
+    }
+
+    .video-start-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <!-- Overlay de início -->
+  <div id="videoOverlay">
+    <div class="video-start-box">
+      <h2 style="color: white; margin-bottom: 20px;">🎬 Nosso Momento Especial 🖤</h2>
+      <p style="color: white; font-size: 1.1rem;">Clique no botão abaixo para assistir ao nosso vídeo</p>
+      <button class="video-start-btn" onclick="startVideo()">Assistir Vídeo</button>
+    </div>
+  </div>
+
+  <div class="video-container">
+    <iframe id="youtubeVideo" src="https://www.youtube.com/embed/G9iku8gQ4h0?start=153&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+
+  <a href="index.html" class="nav-button">🏠 Voltar para a Página Inicial</a>
+
+  <script>
+    // Variável para o player do YouTube
+    let player;
+
+    // Função para iniciar o vídeo
+    function startVideo() {
+      document.getElementById('videoOverlay').style.display = 'none';
+      
+      // Cria o player do YouTube
+      player = new YT.Player('youtubeVideo', {
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    // Quando o player estiver pronto
+    function onPlayerReady(event) {
+      event.target.playVideo();
+    }
+
+    // Monitora o estado do player
+    function onPlayerStateChange(event) {
+      // Você pode adicionar ações com base no estado do vídeo se quiser
+    }
+
+    // Carrega a API do YouTube
+    function loadYouTubeAPI() {
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+
+    // Carrega a API quando a página é aberta
+    window.onload = loadYouTubeAPI;
+  </script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <link rel="icon" href="coracao.png" type="image/x-icon">
+</head>
+  <title>Para você, minha Linda Mortícia 🖤</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      color: #fff;
+      text-align: center;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      color: #ff6b6b;
+    }
+
+    h2 {
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      max-width: 80%;
+      margin: 0 auto 20px;
+    }
+
+    .clock {
+      font-size: 2rem;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 10px 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .music-player {
+      margin-top: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .music-buttons button {
+      background: #ff6b6b;
+      border: none;
+      padding: 12px 25px;
+      margin: 8px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #fff;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .music-buttons button:hover {
+      background: #ff8e8e;
+      transform: translateY(-2px);
+    }
+
+    .controls button {
+      background: #6b66ff;
+      border: none;
+      padding: 10px 25px;
+      margin: 5px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #fff;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .controls button:hover {
+      background: #8a85ff;
+      transform: translateY(-2px);
+    }
+
+    audio {
+      display: none;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff6b6b;
+      transform: rotate(45deg);
+      animation: float 6s infinite;
+      opacity: 0.7;
+      z-index: 0;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff6b6b;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        bottom: 0;
+        transform: translateX(0) rotate(45deg);
+        opacity: 0.7;
+      }
+      100% {
+        bottom: 100%;
+        transform: translateX(100px) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .love-note {
+      margin-top: 20px;
+      font-style: italic;
+      font-size: 1.2rem;
+      max-width: 80%;
+      line-height: 1.6;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-button {
+      margin-top: 30px;
+      background: #ff6b6b;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #fff;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+    }
+
+    .nav-button:hover {
+      background: #ff8e8e;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Para você, minha Linda Mortícia 🖤</h1>
+    <div class="clock" id="clock">00:00:00</div>
+    
+    <div class="love-note">
+      "Em um universo infinito, entre bilhões de estrelas,<br>
+      meu coração encontrou o seu e soube que era o lar."
+    </div>
+    
+    <h2>Essas músicas me lembram você: </h2>
+
+    <div class="music-player">
+      <div class="music-buttons">
+        <button onclick="playSong('die-with-a-smile.mp3')">🎵 Die With a Smile</button>
+        <button onclick="playSong('mine-bazzi.mp3')">🎵 Mine - Bazzi</button>
+        <button onclick="playSong('the-hills.mp3')">🎵 The Hills</button>
+      </div>
+      <div class="controls">
+        <button onclick="toggleMusic()" id="playPauseBtn">▶️ Tocar</button>
+      </div>
+      <audio id="player"></audio>
+    </div>
+
+    <a href="memorias.html" class="nav-button">📖 Nossos momentos</a>
+
+   
+  </div>
+
+  <script>
+    // Relógio
+    function updateClock() {
+      const now = new Date();
+      const hrs = String(now.getHours()).padStart(2, '0');
+      const mins = String(now.getMinutes()).padStart(2, '0');
+      const secs = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById("clock").textContent = `${hrs}:${mins}:${secs}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Reprodutor de música
+    const audio = document.getElementById("player");
+    const playPauseBtn = document.getElementById("playPauseBtn");
+    let isPlaying = false;
+
+    function playSong(src) {
+      audio.src = src;
+      audio.play();
+      isPlaying = true;
+      playPauseBtn.textContent = "⏸️ Pausar";
+    }
+
+    function toggleMusic() {
+      if (!audio.src) return;
+      if (isPlaying) {
+        audio.pause();
+        playPauseBtn.textContent = "▶️ Tocar";
+      } else {
+        audio.play();
+        playPauseBtn.textContent = "⏸️ Pausar";
+      }
+      isPlaying = !isPlaying;
+    }
+
+    // Corações
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.animationDuration = `${4 + Math.random() * 4}s`;
+      heart.style.width = `${10 + Math.random() * 20}px`;
+      heart.style.height = heart.style.width;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>

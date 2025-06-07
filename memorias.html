@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="coracao.png" type="image/x-icon">
+  <title>Nossos Momentos 🖤</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      text-align: center;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      color: #ff6b6b;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+      max-width: 800px;
+    }
+
+    .gallery img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 3px solid #ff6b6b;
+      transition: transform 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .love-letter {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 600px;
+      margin: 20px auto;
+      line-height: 1.6;
+      backdrop-filter: blur(5px);
+    }
+
+    .nav-button {
+      margin-top: 20px;
+      background: #ff6b6b;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #fff;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
+    }
+
+    .nav-button:hover {
+      background: #ff8e8e;
+      transform: translateY(-2px);
+    }
+
+    /* Overlay de início musical */
+    #musicOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+    }
+
+    .music-start-box {
+      background: rgba(255, 107, 107, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 80%;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .music-start-btn {
+      background: white;
+      color: #ff6b6b;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: bold;
+    }
+
+    .music-start-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Esconde o player de áudio */
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Overlay de início musical -->
+  <div id="musicOverlay">
+    <div class="music-start-box">
+      <h2 style="color: white; margin-bottom: 20px;">🎵 Nossa Música Especial 🎵</h2>
+      <p style="color: white; font-size: 1.1rem;">Clique no botão abaixo para iniciar a trilha sonora do nosso amor</p>
+      <button class="music-start-btn" onclick="startMusic()">Iniciar Música Romântica</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>Nossos Momentos 🖤</h1>
+    
+    <div class="love-letter">
+      <p>Querida Mortícia,</p>
+      <p>Cada momento ao seu lado é como uma página de um livro que nunca quero que acabe. Aqui estão algumas das nossas melhores lembranças juntos.</p>
+      <p>Com todo o meu amor,<br>Seu Cavalheiro.</p>
+    </div>
+
+    <div class="gallery">
+      <!-- Substitua pelas suas fotos -->
+      <img src="eu1.jpeg" alt="Foto 1">
+      <img src="eu2.jpeg" alt="Foto 2">
+      <img src="eu3.jpeg" alt="Foto 3">
+      <img src="eu5.jpeg" alt="Foto 4">
+    </div>
+
+    <a href="index.html" class="nav-button">🏠 Voltar para a Página Inicial</a>
+
+    <a href="video.html" class="nav-button">🎬 Ver minha declaração</a>
+
+  </div>
+
+  <!-- Player de áudio em loop (oculto) -->
+  <audio id="bgMusic" loop>
+    <source src="Under The Influence.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio HTML5.
+  </audio>
+
+  <script>
+    // Função para iniciar a música
+    function startMusic() {
+      const music = document.getElementById('bgMusic');
+      
+      // Tenta reproduzir
+      music.play().then(() => {
+        // Esconde o overlay se conseguir tocar
+        document.getElementById('musicOverlay').style.display = 'none';
+      }).catch(error => {
+        console.error("Erro ao reproduzir:", error);
+        alert("Por favor, clique novamente para permitir a reprodução da música.");
+      });
+    }
+
+    // Tenta reproduzir automaticamente quando a página carrega
+    // (isso geralmente falha, mas tentamos de qualquer maneira)
+    window.addEventListener('load', () => {
+      document.getElementById('bgMusic').play().catch(() => {
+        console.log("A reprodução automática foi bloqueada - aguardando interação do usuário");
+      });
+    });
+  </script>
+</body>
+</html>
